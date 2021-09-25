@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Planet from './Planet'
-import ButtonsPanel from './ButtonsPanel'
+import ButtonsPanel from './MenuPanel/Panel'
 
 const planets = [
     '/images/planets/mars.png',
