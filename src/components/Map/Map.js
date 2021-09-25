@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+
 import Planet from './Planet'
+import ButtonsPanel from './ButtonsPanel'
 
 const planets = [
     '/images/planets/mars.png',
@@ -10,7 +12,7 @@ const planets = [
     '/images/planets/blue.png'
 ]
 
-const station = '/images/planets/earth.png'
+const base = '/images/planets/earth.png'
 const mapBg = '/images/background.jpg'
 
 const MapContainer = styled.div`
@@ -39,6 +41,20 @@ const PlanetsContainer = styled.div`
 // Should display a grid of earth & 5 other planets
 // Should have a menu at the bottom that pops up when you select a planet
 const Map = () => {
+    const [selectedPlanet, setSelectedPlanet] = useState(null)
+
+    const clearSelected = () => setSelectedPlanet(null)
+
+    const handleClick = e => {
+        setSelectedPlanet(e.currentTarget.dataset.name)
+    }
+
+    useEffect(() => {
+        if (selectedPlanet === 'base') {
+            clearSelected()
+        }
+    }, [selectedPlanet])
+
     return (
         <MapContainer>
             <PlanetsContainer>
@@ -46,9 +62,21 @@ const Map = () => {
                     <Planet
                         key={i}
                         img={planets[i]}
+                        handleClick={handleClick}
+                        name={`planet-${i}`}
                     />
                 ))}
+                <Planet
+                    key={'base'}
+                    img={base}
+                    handleClick={handleClick}
+                    name={'homebase'}
+                />
             </PlanetsContainer>
+            <ButtonsPanel
+                clearSelected={clearSelected}
+                planetSelected={selectedPlanet}
+            />
         </MapContainer>
     )
 }

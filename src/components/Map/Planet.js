@@ -6,7 +6,7 @@ const PlanetContainer = styled.div`
     display: flex;
     height: 50%;
     margin: 1rem;
-    max-height: 30vw;
+    max-height: 20vw;
     place-content: center;
     position: relative;
     text-align: center;
@@ -18,10 +18,17 @@ const PlanetImg = styled.img`
     z-index: 0;
 `
 
-const Planet = ({ img }) => {
-    
+const Planet = ({
+    img,
+    handleClick,
+    name
+}) => {
+
     return (
-        <PlanetContainer>
+        <PlanetContainer
+            onClick={handleClick}
+            data-name={name}
+        >
             <PlanetImg
                 src={img}
             />
