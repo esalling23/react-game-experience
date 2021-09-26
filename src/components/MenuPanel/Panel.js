@@ -71,7 +71,7 @@ const ButtonsPanel = ({
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
-        if (planetSelected !== null) {
+        if (planetSelected !== 'base') {
             setIsOpen(true)
         }
     }, [planetSelected])

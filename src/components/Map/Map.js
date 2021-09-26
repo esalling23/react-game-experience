@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { AnimateSharedLayout } from 'framer-motion'
 
 import Planet from './Planet'
-import ButtonsPanel from './MenuPanel/Panel'
+import ButtonsPanel from '../MenuPanel/Panel'
 
 const planets = [
     '/images/planets/mars.png',
@@ -41,9 +42,9 @@ const PlanetsContainer = styled.div`
 // Should display a grid of earth & 5 other planets
 // Should have a menu at the bottom that pops up when you select a planet
 const Map = () => {
-    const [selectedPlanet, setSelectedPlanet] = useState(null)
+    const [selectedPlanet, setSelectedPlanet] = useState('base')
 
-    const clearSelected = () => setSelectedPlanet(null)
+    const clearSelected = () => setSelectedPlanet('base')
 
     const handleClick = e => {
         setSelectedPlanet(e.currentTarget.dataset.name)
@@ -58,20 +59,27 @@ const Map = () => {
     return (
         <MapContainer>
             <PlanetsContainer>
-                {planets.map((img, i) => (
+                <AnimateSharedLayout>
+                    {planets.map((img, i) => {
+                        const name = `planet-${i}`
+                        return (
+                            <Planet
+                                key={i}
+                                img={planets[i]}
+                                handleClick={handleClick}
+                                name={name}
+                                isSelected={selectedPlanet === name}
+                            />
+                        )
+                    })}
                     <Planet
-                        key={i}
-                        img={planets[i]}
+                        key={'base'}
+                        img={base}
                         handleClick={handleClick}
-                        name={`planet-${i}`}
+                        name={'base'}
+                        isSelected={selectedPlanet === 'base'}
                     />
-                ))}
-                <Planet
-                    key={'base'}
-                    img={base}
-                    handleClick={handleClick}
-                    name={'homebase'}
-                />
+                </AnimateSharedLayout>
             </PlanetsContainer>
             <ButtonsPanel
                 clearSelected={clearSelected}
