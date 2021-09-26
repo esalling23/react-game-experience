@@ -34,7 +34,12 @@ const MotionButton = styled(motion.button)`
     }
 `
 
-const BGColorButton = ({ color, isSelected, onClick }) => {
+const BGColorButton = ({
+    color,
+    isSelected,
+    onClick,
+    onComplete
+}) => {
     return (
         <MotionButton
             bgColor="transparent"
@@ -55,6 +60,7 @@ const BGColorButton = ({ color, isSelected, onClick }) => {
                         stiffness: 500,
                         damping: 30
                     }}
+                    onAnimationComplete={onComplete}
                 />
             )}
             Click Me

@@ -16,6 +16,7 @@ const MotionBackground = styled(motion.div)`
     height: 100%;
     place-content: center;
     width: 100%;
+    z-index: 100;
 `
 
 const BGButtonContainer = styled(motion.div)`
@@ -87,7 +88,8 @@ const sidebar = {
 
 const ButtonsPanel = ({
     clearSelected,
-    planetSelected
+    planetSelected,
+    addStar
 }) => {
     const [selectedBtn, setSelectedBtn] = useState(colors[0])
     const [isOpen, setIsOpen] = useState(false)
@@ -130,16 +132,17 @@ const ButtonsPanel = ({
                 open: { opacity: 1, y: 0 },
                 closed: { opacity: 0, y: '100%' }
             }}>
-            <AnimateSharedLayout>
-                {colors.map(c => (
-                    <BGColorButton
-                        key={c}
-                        color={c}
-                        isSelected={selectedBtn === c}
-                        onClick={() => setSelectedBtn(c)}
-                    />
-                ))}
-            </AnimateSharedLayout>
+                <AnimateSharedLayout>
+                    {colors.map(c => (
+                        <BGColorButton
+                            key={c}
+                            color={c}
+                            isSelected={selectedBtn === c}
+                            onClick={() => setSelectedBtn(c)}
+                            onComplete={addStar}
+                        />
+                    ))}
+                </AnimateSharedLayout>
             </BGButtonContainer>
         </MotionBackground>
     )

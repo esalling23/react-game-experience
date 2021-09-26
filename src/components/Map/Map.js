@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { AnimateSharedLayout } from 'framer-motion'
+import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import Planet from './Planet'
+import Star from './Star'
 import ButtonsPanel from '../MenuPanel/Panel'
+
+import { randomNum, randomCondition } from '../../helpers'
 
 const planets = [
     '/images/planets/mars.png',
@@ -39,12 +42,40 @@ const PlanetsContainer = styled.div`
     width: 100%;
 `
 
+const StarContainer = styled(motion.div)`
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+`
+
 // Should display a grid of earth & 5 other planets
 // Should have a menu at the bottom that pops up when you select a planet
 const Map = () => {
+    const [stars, setStars] = useState([])
     const [selectedPlanet, setSelectedPlanet] = useState('base')
 
     const clearSelected = () => setSelectedPlanet('base')
+
+    const addStar = () => setStars(currStars => {
+        const newStar = {
+            speed: randomNum(10) + 6,
+            size: randomCondition() ? 'small' : 'medium'
+        }
+        // just a way to decide to offset by left or top
+        const sideToOffset = randomNum(2) < 1 ? 'top' : 'left'
+        const amountToOffset = randomNum(30)
+        newStar[sideToOffset] = amountToOffset + '%'
+
+        return [...currStars, newStar]
+    })
+
+    const destroyStar = (id) => setStars(currStars => {
+        const newStars = [...currStars]
+        newStars.pop()
+        return newStars
+    })
 
     const handleClick = e => {
         setSelectedPlanet(e.currentTarget.dataset.name)
@@ -58,6 +89,17 @@ const Map = () => {
 
     return (
         <MapContainer>
+            <StarContainer height={'100%'}>
+                {stars.map((star, i) => (<Star
+                    key={`star-${i}`}
+                    top={star.top}
+                    left={star.left}
+                    size={star.size}
+                    destroyTime={star.speed}
+                    destroy={() => destroyStar(star.id)}
+                />))}
+            </StarContainer>
+
             <PlanetsContainer>
                 <AnimateSharedLayout>
                     {planets.map((img, i) => {
@@ -84,6 +126,8 @@ const Map = () => {
             <ButtonsPanel
                 clearSelected={clearSelected}
                 planetSelected={selectedPlanet}
+                addStar={addStar}
+                destroyStar={destroyStar}
             />
         </MapContainer>
     )
