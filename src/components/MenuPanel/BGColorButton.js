@@ -8,9 +8,11 @@ const MotionButton = styled(motion.button)`
     border-radius: 2em;
     box-sizing: border-box;
     color: #FFFFFF;
-    font-size: 1.75em;
+    font-size: 2.8vw;
     font-family: 'Roboto',sans-serif;
     font-weight: 300;
+    flex-wrap: wrap;
+    height: 2em;
     margin: 0.5em;
     padding: 0.3em 1.2em;
     position: relative;
@@ -24,6 +26,11 @@ const MotionButton = styled(motion.button)`
         border-color: ${props => props.selected ? props.bgColor : 'white'};
         cursor: pointer;
         font-weight: bold;
+    }
+
+    @media(min-width: 768px) {
+        flex-wrap: no-wrap;
+        font-size: 1.9vw;
     }
 `
 

@@ -4,13 +4,31 @@ import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import BGColorButton from './BGColorButton'
 
+const SPIN_BTN_SIZE = 2
+const SPIN_BTN_SCALE = 1.1
+// 1/10 of the scale to get increase (ex: 1.1 => 0.1)
+// 1/4 of the size to get radius
+const SPIN_BTN_ANIM_OFFSET = -(SPIN_BTN_SIZE / 4) * (SPIN_BTN_SCALE / 10)
+
 const MotionBackground = styled(motion.div)`
-    align-items: center;
     background: ${props => props.bgColor};
     display: flex;
     height: 100%;
-    justify-content: center;
+    place-content: center;
     width: 100%;
+`
+
+const BGButtonContainer = styled(motion.div)`
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    place-content: center;
+    width: 75%;
+
+    @media(min-width: 768px) {
+        flex-wrap: nowrap;
+    }
 `
 
 const SpinCloseButton = styled(motion.button)`
@@ -22,9 +40,12 @@ const SpinCloseButton = styled(motion.button)`
     display: inline-block;
     font-family: Arial, sans-serif;
     font-weight: 300;
-    height: 2em;
-    margin: 1em;
-    width: 2em;
+    height: ${SPIN_BTN_SIZE}rem;
+    left: 0;
+    margin: 1rem;
+    position: absolute;
+    top: 0;
+    width: ${SPIN_BTN_SIZE}rem;
 
     &:hover {
         cursor: pointer;
@@ -52,6 +73,7 @@ const sidebar = {
         }
     },
     closed: {
+        height: 0,
         opacity: 0,
         y: '100%',
         transition: {
@@ -73,6 +95,8 @@ const ButtonsPanel = ({
     useEffect(() => {
         if (planetSelected !== 'base') {
             setIsOpen(true)
+        } else {
+            setIsOpen(false)
         }
     }, [planetSelected])
 
@@ -90,7 +114,10 @@ const ButtonsPanel = ({
             <SpinCloseButton
                 whileHover={{
                     rotate: 90,
-                    scale: 1.1,
+                    scale: SPIN_BTN_SCALE,
+                    // offset to keep it centered
+                    y: `${SPIN_BTN_ANIM_OFFSET}rem`,
+                    x: `${SPIN_BTN_ANIM_OFFSET}rem`
                 }}
                 transition={{
                     duration: 0.1
@@ -99,6 +126,10 @@ const ButtonsPanel = ({
                     setIsOpen(false)
                 }}
             />
+            <BGButtonContainer variants={{
+                open: { opacity: 1, y: 0 },
+                closed: { opacity: 0, y: '100%' }
+            }}>
             <AnimateSharedLayout>
                 {colors.map(c => (
                     <BGColorButton
@@ -109,7 +140,7 @@ const ButtonsPanel = ({
                     />
                 ))}
             </AnimateSharedLayout>
-
+            </BGButtonContainer>
         </MotionBackground>
     )
 }
