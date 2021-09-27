@@ -71,8 +71,8 @@ const Map = () => {
                 speed: randomNum(STAR_SPEED) + STAR_SPEED,
                 size: randomCondition() ? 'small' : 'medium',
                 timestamp: new Date()
-        }
-        // just a way to decide to offset by left or top
+            }
+            // just a way to decide to offset by left or top
             const sideToOffset = randomCondition() ? 'top' : 'left'
             const amountToOffset = randomNum(STAR_POS_OFFSET)
             star[sideToOffset] = amountToOffset + '%'
