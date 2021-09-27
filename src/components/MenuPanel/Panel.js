@@ -16,7 +16,7 @@ const SPIN_BTN_ANIM_OFFSET = -(SPIN_BTN_SIZE / 4) * (SPIN_BTN_SCALE / 10)
 const MotionBackground = styled(motion.div)`
     background: ${props => props.bgColor};
     display: flex;
-    height: 100%;
+    height: 12em;
     place-content: center;
     width: 100%;
     z-index: 100;
@@ -64,7 +64,7 @@ const colors = [
     '#ffb057',
 ]
 
-const sidebar = {
+const sidebarVariants = {
     open: {
         opacity: 1,
         y: 0,
@@ -89,10 +89,23 @@ const sidebar = {
     }
 }
 
+const buttonVariants = {
+    open: { opacity: 1, y: 0 },
+    closed: {
+        opacity: 0,
+        y: '100%',
+        transition: {
+            delay: 0.1,
+            duration: 0.6
+        }
+    }
+}
+
 const ButtonsPanel = ({
     clearSelected,
     planetSelected,
-    addStars
+    addStars,
+    clickSounds
 }) => {
     const [selectedBtn, setSelectedBtn] = useState(colors[0])
     const [isOpen, setIsOpen] = useState(false)
@@ -105,15 +118,21 @@ const ButtonsPanel = ({
         }
     }, [planetSelected])
 
+    const handleClose = () => {
+        clickSounds.play()
+        setIsOpen(false)
+    }
+
+    const handleBtnClick = (color) => {
+        clickSounds.play()
+        setSelectedBtn(color)
+    }
+
     return (
         <MotionBackground
             bgColor="black"
-            style={{
-                height: '12em',
-                width: '100%',
-            }}
             animate={isOpen ? 'open' : 'closed'}
-            variants={sidebar}
+            variants={sidebarVariants}
             onAnimationComplete={() => !isOpen && clearSelected()}
         >
             <SpinCloseButton
@@ -127,21 +146,16 @@ const ButtonsPanel = ({
                 transition={{
                     duration: 0.1
                 }}
-                onClick={e => {
-                    setIsOpen(false)
-                }}
+                onClick={handleClose}
             />
-            <BGButtonContainer variants={{
-                open: { opacity: 1, y: 0 },
-                closed: { opacity: 0, y: '100%' }
-            }}>
+            <BGButtonContainer variants={buttonVariants}>
                 <AnimateSharedLayout>
                     {colors.map(c => (
                         <BGColorButton
                             key={c}
                             color={c}
                             isSelected={selectedBtn === c}
-                            onClick={() => setSelectedBtn(c)}
+                            onClick={e => handleBtnClick(c)}
                             onComplete={addStars}
                         />
                     ))}
