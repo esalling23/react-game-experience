@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Howl } from 'howler'
 import styled from 'styled-components'
-import { randomNum } from '../../helpers'
+import { randomNum, randomCondition } from '../../helpers'
 
 import spaceshipImg from '../../images/ufo.png'
 
@@ -21,25 +21,22 @@ const flyingSounds = [
 ]
 
 const BouncingShip = styled(motion.img)`
-    height: 4em;
+    height: 2.5em;
     position: absolute;
-    top: 4em;
+    top: 0;
     width: auto;
     z-index: 1;
-`
 
-const spaceshipVariants = {
-    flying: {
-        y: [0, 20, 0],
-        rotate: [0, 5, 20, 10, 0]
-    },
-    landed: {
-        y: [0, 5, 0],
-        transition: {
-            repeat: Infinity
-        }
+    @media (min-width: 640px) {
+        top: 2em;
+        height: 3em;
     }
-}
+
+    @media (min-width: 960px) {
+        top: 3em;
+        height: 4em;
+    }
+`
 
 const Spaceship = () => {
     const engineSound = useMemo(() => new Howl({
@@ -47,6 +44,25 @@ const Spaceship = () => {
         volume: 0.25
     }), [])
     const [isFlying, setIsFlying] = useState(true)
+
+    // Should we lean right or left this time?
+    const MOD = randomCondition() ? 1 : -1
+
+    const spaceshipVariants = {
+        flying: {
+            y: [0, randomNum(20) + 10, 0],
+            rotate: [0, MOD * (randomNum(5) + 5), MOD * (randomNum(20) + 10), MOD * (randomNum(10) + 5), 0]
+        },
+        landed: {
+            y: [0, 1, 0],
+            rotate: [-1, 0, 1],
+            transition: {
+                repeat: Infinity,
+                repeatType: 'reverse',
+                duration: 2
+            }
+        }
+    }
 
     useEffect(() => {
         if (isFlying) {
