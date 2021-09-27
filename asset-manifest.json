@@ -1,28 +1,42 @@
 {
   "files": {
     "main.css": "/react-game-experience/static/css/main.538d1236.chunk.css",
-    "main.js": "/react-game-experience/static/js/main.ce2bae36.chunk.js",
-    "main.js.map": "/react-game-experience/static/js/main.ce2bae36.chunk.js.map",
+    "main.js": "/react-game-experience/static/js/main.d0a02f4f.chunk.js",
+    "main.js.map": "/react-game-experience/static/js/main.d0a02f4f.chunk.js.map",
     "runtime-main.js": "/react-game-experience/static/js/runtime-main.d8bb254f.js",
     "runtime-main.js.map": "/react-game-experience/static/js/runtime-main.d8bb254f.js.map",
-    "static/js/2.0f6b031e.chunk.js": "/react-game-experience/static/js/2.0f6b031e.chunk.js",
-    "static/js/2.0f6b031e.chunk.js.map": "/react-game-experience/static/js/2.0f6b031e.chunk.js.map",
+    "static/js/2.5c2e4065.chunk.js": "/react-game-experience/static/js/2.5c2e4065.chunk.js",
+    "static/js/2.5c2e4065.chunk.js.map": "/react-game-experience/static/js/2.5c2e4065.chunk.js.map",
     "static/js/3.a93e3754.chunk.js": "/react-game-experience/static/js/3.a93e3754.chunk.js",
     "static/js/3.a93e3754.chunk.js.map": "/react-game-experience/static/js/3.a93e3754.chunk.js.map",
     "index.html": "/react-game-experience/index.html",
     "static/css/main.538d1236.chunk.css.map": "/react-game-experience/static/css/main.538d1236.chunk.css.map",
-    "static/js/2.0f6b031e.chunk.js.LICENSE.txt": "/react-game-experience/static/js/2.0f6b031e.chunk.js.LICENSE.txt",
+    "static/js/2.5c2e4065.chunk.js.LICENSE.txt": "/react-game-experience/static/js/2.5c2e4065.chunk.js.LICENSE.txt",
+    "static/media/Galactic-Renaissance.044543d7.mp3": "/react-game-experience/static/media/Galactic-Renaissance.044543d7.mp3",
     "static/media/background.5c5c02fc.jpg": "/react-game-experience/static/media/background.5c5c02fc.jpg",
     "static/media/blue.73f7c10e.png": "/react-game-experience/static/media/blue.73f7c10e.png",
+    "static/media/click.035bea24.ogg": "/react-game-experience/static/media/click.035bea24.ogg",
     "static/media/earth.ce252f74.png": "/react-game-experience/static/media/earth.ce252f74.png",
+    "static/media/fairy-glow.a31df1b3.wav": "/react-game-experience/static/media/fairy-glow.a31df1b3.wav",
+    "static/media/fairy-swoosh.b39a5bd6.wav": "/react-game-experience/static/media/fairy-swoosh.b39a5bd6.wav",
+    "static/media/fire-swoosh.78813deb.wav": "/react-game-experience/static/media/fire-swoosh.78813deb.wav",
+    "static/media/flitter.3da74e6b.wav": "/react-game-experience/static/media/flitter.3da74e6b.wav",
+    "static/media/future-engine.0b8055db.wav": "/react-game-experience/static/media/future-engine.0b8055db.wav",
+    "static/media/future-swoosh.fca6788e.wav": "/react-game-experience/static/media/future-swoosh.fca6788e.wav",
     "static/media/jupiter.a6ebc2b3.png": "/react-game-experience/static/media/jupiter.a6ebc2b3.png",
+    "static/media/machine-glitch.9a101c0a.wav": "/react-game-experience/static/media/machine-glitch.9a101c0a.wav",
+    "static/media/magic.d8b81115.wav": "/react-game-experience/static/media/magic.d8b81115.wav",
     "static/media/rings.f59db321.png": "/react-game-experience/static/media/rings.f59db321.png",
-    "static/media/ufo.3048b82b.png": "/react-game-experience/static/media/ufo.3048b82b.png"
+    "static/media/sweeping-swoosh.78073ee5.wav": "/react-game-experience/static/media/sweeping-swoosh.78073ee5.wav",
+    "static/media/time-machine.9da4f42b.wav": "/react-game-experience/static/media/time-machine.9da4f42b.wav",
+    "static/media/traveling.0f106b32.wav": "/react-game-experience/static/media/traveling.0f106b32.wav",
+    "static/media/ufo.3048b82b.png": "/react-game-experience/static/media/ufo.3048b82b.png",
+    "static/media/vibrating-engine.a2908dba.wav": "/react-game-experience/static/media/vibrating-engine.a2908dba.wav"
   },
   "entrypoints": [
     "static/js/runtime-main.d8bb254f.js",
-    "static/js/2.0f6b031e.chunk.js",
+    "static/js/2.5c2e4065.chunk.js",
     "static/css/main.538d1236.chunk.css",
-    "static/js/main.ce2bae36.chunk.js"
+    "static/js/main.d0a02f4f.chunk.js"
   ]
 }
