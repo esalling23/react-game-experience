@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-game-experience/static/css/main.538d1236.chunk.css",
-    "main.js": "/react-game-experience/static/js/main.d0a02f4f.chunk.js",
-    "main.js.map": "/react-game-experience/static/js/main.d0a02f4f.chunk.js.map",
+    "main.css": "/react-game-experience/static/css/main.0abd0780.chunk.css",
+    "main.js": "/react-game-experience/static/js/main.861c7a90.chunk.js",
+    "main.js.map": "/react-game-experience/static/js/main.861c7a90.chunk.js.map",
     "runtime-main.js": "/react-game-experience/static/js/runtime-main.d8bb254f.js",
     "runtime-main.js.map": "/react-game-experience/static/js/runtime-main.d8bb254f.js.map",
-    "static/js/2.5c2e4065.chunk.js": "/react-game-experience/static/js/2.5c2e4065.chunk.js",
-    "static/js/2.5c2e4065.chunk.js.map": "/react-game-experience/static/js/2.5c2e4065.chunk.js.map",
+    "static/js/2.a05870c8.chunk.js": "/react-game-experience/static/js/2.a05870c8.chunk.js",
+    "static/js/2.a05870c8.chunk.js.map": "/react-game-experience/static/js/2.a05870c8.chunk.js.map",
     "static/js/3.a93e3754.chunk.js": "/react-game-experience/static/js/3.a93e3754.chunk.js",
     "static/js/3.a93e3754.chunk.js.map": "/react-game-experience/static/js/3.a93e3754.chunk.js.map",
     "index.html": "/react-game-experience/index.html",
-    "static/css/main.538d1236.chunk.css.map": "/react-game-experience/static/css/main.538d1236.chunk.css.map",
-    "static/js/2.5c2e4065.chunk.js.LICENSE.txt": "/react-game-experience/static/js/2.5c2e4065.chunk.js.LICENSE.txt",
+    "static/css/main.0abd0780.chunk.css.map": "/react-game-experience/static/css/main.0abd0780.chunk.css.map",
+    "static/js/2.a05870c8.chunk.js.LICENSE.txt": "/react-game-experience/static/js/2.a05870c8.chunk.js.LICENSE.txt",
     "static/media/Galactic-Renaissance.044543d7.mp3": "/react-game-experience/static/media/Galactic-Renaissance.044543d7.mp3",
     "static/media/background.5c5c02fc.jpg": "/react-game-experience/static/media/background.5c5c02fc.jpg",
     "static/media/blue.73f7c10e.png": "/react-game-experience/static/media/blue.73f7c10e.png",
@@ -35,8 +35,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d8bb254f.js",
-    "static/js/2.5c2e4065.chunk.js",
-    "static/css/main.538d1236.chunk.css",
-    "static/js/main.d0a02f4f.chunk.js"
+    "static/js/2.a05870c8.chunk.js",
+    "static/css/main.0abd0780.chunk.css",
+    "static/js/main.861c7a90.chunk.js"
   ]
 }
