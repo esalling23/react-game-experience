@@ -33,12 +33,12 @@ const clickSounds = [
     click
 ]
 
-const planetImgs = [
-    mars,
-    jupiter,
-    rings,
-    moon,
-    blue
+const planetData = [
+    { name: 'Mars', img: mars },
+    { name: 'Jupiter', img: jupiter },
+    { name: 'Saturn', img: rings },
+    { name: 'The Moon', img: moon },
+    { name: 'Neptune', img: blue }
 ]
 
 const MapContainer = styled.div`
@@ -76,17 +76,36 @@ const StarContainer = styled(motion.div)`
 const StatusText = styled(motion.h3)`
     background: #7D0D8D;
     border: 2px solid white;
-    border-left: 0px;
-    border-radius: 0 30px 30px 0;
     color: white;
+    display: inline;
     font-family: 'Righteous', cursive;
-    font-size: 1em;
+    font-size: 0.9em;
     max-width: 200px;
-    padding: 1em 2em;
+    padding: 0.75em 1.25em;
+
+    @media (min-width: 480px) {
+        padding: 1em 2em;
+        font-size: 1em;
+    }
 
     @media (min-width: 640px) {
         font-size: 1.25em;
     }
+
+    &.left {
+        border-left: 0px;
+        border-radius: 0 30px 30px 0;
+    }
+
+    &.right {
+        border-right: 0px;
+        border-radius: 30px 0 0 30px;
+    }
+`
+
+const StatusTextContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
 
 const STAR_SPEED = 6
@@ -157,7 +176,9 @@ const Map = () => {
 
     return (
         <MapContainer>
-            <StatusText>{selectedPlanet === 'base' ? 'Welcome home' : `Exploring ${selectedPlanet}`}</StatusText>
+            <StatusTextContainer>
+                <StatusText className='left'>{selectedPlanet === 'base' ? 'Welcome home' : `Exploring ${selectedPlanet}`}</StatusText>
+            </StatusTextContainer>
             <StarContainer ref={skyRef} height={'100%'}>
                 {stars.map((star, i) => (<Star
                     key={`star-${i}`}
