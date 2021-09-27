@@ -41,7 +41,7 @@ const spaceshipVariants = {
 const Spaceship = () => {
     const engineSound = useMemo(() => new Howl({
         src: [flyingSounds[randomNum(flyingSounds.length - 1)]],
-        volume: 2.5
+        volume: 0.25
     }), [])
     const [isFlying, setIsFlying] = useState(true)
 
