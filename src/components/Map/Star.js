@@ -9,14 +9,20 @@ const smallStar = '/images/star_small.png'
 const mediumStar = '/images/star_medium.png'
 
 const soundDir = '/audio/sfx/stars/'
-const soundPaths = [
+const flyingSoundPaths = [
     'fairy-swoosh.wav',
     'fire-swoosh.wav',
     'future-swoosh.wav',
     'sweeping-swoosh.wav'
 ]
+const caughtSoundPaths = [
+    'fairy-flow.wav',
+    'flitter.wav',
+    'magic.wav'
+]
 
-const shootingSounds = soundPaths.map(s => `${soundDir}shooting/${s}`)
+const flyingSounds = flyingSoundPaths.map(s => `${soundDir}shooting/${s}`)
+const caughtSounds = caughtSoundPaths.map(s => `${soundDir}caught/${s}`)
 
 const FlyingStar = styled(motion.img)`
     height: 2.5em;
@@ -31,15 +37,23 @@ const CATCH_ANIM_TIME = 0.6
 
 const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
     const controls = useAnimation()
+
     const starRef = useRef(null)
     const destroyTimeout = useRef(null)
+
     const [isShooting, setIsShooting] = useState(false)
     const [isCaught, setIsCaught] = useState(false)
     const [soundPlayed, setSoundPlayed] = useState(false)
+
     const shootSfx = useMemo(() => new Howl({
-        src: shootingSounds[randomNum(shootingSounds.length - 1)],
+        src: flyingSounds[randomNum(flyingSounds.length - 1)],
         rate: 0.25,
-        volume: 0.15,
+        volume: 0.05,
+    }), [])
+    const caughtSfx = useMemo(() => new Howl({
+        src: caughtSounds[randomNum(caughtSounds.length - 1)],
+        rate: 1.2,
+        volume: 0.8,
     }), [])
 
     const starVariants = {
@@ -96,11 +110,14 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
     useEffect(() => {
         if (isCaught) {
             controls.stop()
+            caughtSfx.play()
+            shootSfx.fade(1, 0, 1000)
+            caughtSfx.fade(0, 1, 500).fade(1, 0, 2000)
             controls.start('caught')
-                .then(() => {
-                    destroy()
-                    clearTimeout(destroyTimeout.current)
-                })
+                    .then(() => {
+                        destroy()
+                        clearTimeout(destroyTimeout.current)
+                    })
         } else {
             if (!isShooting) {
                 setIsShooting(true)
@@ -111,7 +128,7 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
                     })
             }
         }
-    }, [isCaught, controls, destroy, isShooting])
+    }, [isCaught, controls, destroy, isShooting, caughtSfx])
 
     // Sets up timer to destroy star after animation time
     useEffect(() => {
@@ -123,6 +140,7 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
             clearTimeout(destroyTimeout.current)
         }
     }, [destroyTime, destroy])
+
 
     return (
         <FlyingStar
