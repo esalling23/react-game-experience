@@ -4,18 +4,21 @@ import { Howl } from 'howler'
 import styled from 'styled-components'
 import { randomNum } from '../../helpers'
 
-const soundDir = '/audio/sfx/spaceship/'
-const flyingSoundPaths = [
-    'future-engine.wav',
-    'machine-glitch.wav',
-    'traveling.wav',
-    'time-machine.wav',
-    'vibrating-engine.wav'
+import spaceshipImg from '../../images/ufo.png'
+
+import futureEngine from '../../audio/sfx/spaceship/future-engine.wav'
+import machineGlitch from '../../audio/sfx/spaceship/machine-glitch.wav'
+import traveling from '../../audio/sfx/spaceship/traveling.wav'
+import timeMachine from '../../audio/sfx/spaceship/time-machine.wav'
+import vibratingEngine from '../../audio/sfx/spaceship/vibrating-engine.wav'
+
+const flyingSounds = [
+    futureEngine,
+    machineGlitch,
+    traveling,
+    timeMachine,
+    vibratingEngine
 ]
-
-const flyingSounds = flyingSoundPaths.map(s => `${soundDir}${s}`)
-
-const spaceshipImg = '/images/ufo.png'
 
 const BouncingShip = styled(motion.img)`
     height: 4em;

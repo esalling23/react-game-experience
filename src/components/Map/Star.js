@@ -5,24 +5,30 @@ import { motion, useAnimation } from 'framer-motion'
 
 import { randomNum } from '../../helpers'
 
-const smallStar = '/images/star_small.png'
-const mediumStar = '/images/star_medium.png'
+// Image imports
+import smallStar from '../../images/star_small.png'
+import mediumStar from '../../images/star_medium.png'
 
-const soundDir = '/audio/sfx/stars/'
-const flyingSoundPaths = [
-    'fairy-swoosh.wav',
-    'fire-swoosh.wav',
-    'future-swoosh.wav',
-    'sweeping-swoosh.wav'
-]
-const caughtSoundPaths = [
-    'fairy-flow.wav',
-    'flitter.wav',
-    'magic.wav'
-]
+// Audio imports
+import fairySwoosh from '../../audio/sfx/stars/shooting/fairy-swoosh.wav'
+import fireSwoosh from '../../audio/sfx/stars/shooting/fire-swoosh.wav'
+import futureSwoosh from '../../audio/sfx/stars/shooting/future-swoosh.wav'
+import sweepingSwoosh from '../../audio/sfx/stars/shooting/sweeping-swoosh.wav'
+import fairyGlow from '../../audio/sfx/stars/caught/fairy-glow.wav'
+import flitter from '../../audio/sfx/stars/caught/flitter.wav'
+import magic from '../../audio/sfx/stars/caught/magic.wav'
 
-const flyingSounds = flyingSoundPaths.map(s => `${soundDir}shooting/${s}`)
-const caughtSounds = caughtSoundPaths.map(s => `${soundDir}caught/${s}`)
+const flyingSounds = [
+    fairySwoosh,
+    fireSwoosh,
+    futureSwoosh,
+    sweepingSwoosh
+]
+const caughtSounds = [
+    fairyGlow,
+    flitter,
+    magic
+]
 
 const FlyingStar = styled(motion.img)`
     height: 2.5em;
@@ -48,7 +54,7 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
     const shootSfx = useMemo(() => new Howl({
         src: flyingSounds[randomNum(flyingSounds.length - 1)],
         rate: 0.25,
-        volume: 0.05,
+        volume: 0.15,
     }), [])
     const caughtSfx = useMemo(() => new Howl({
         src: caughtSounds[randomNum(caughtSounds.length - 1)],

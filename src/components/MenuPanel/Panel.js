@@ -4,6 +4,9 @@ import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import BGColorButton from './BGColorButton'
 
+// image import
+import whiteCloseBtn from '../../images/white-close-btn.png'
+
 const SPIN_BTN_SIZE = 2
 const SPIN_BTN_SCALE = 1.1
 // 1/10 of the scale to get increase (ex: 1.1 => 0.1)
@@ -33,7 +36,7 @@ const BGButtonContainer = styled(motion.div)`
 `
 
 const SpinCloseButton = styled(motion.button)`
-    background: url('/images/white-close-btn.png');
+    background: url(${whiteCloseBtn});
     background-repeat: no-repeat;
     background-size: contain;
     border: 0;

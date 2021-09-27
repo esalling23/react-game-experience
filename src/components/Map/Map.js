@@ -9,24 +9,37 @@ import ButtonsPanel from '../MenuPanel/Panel'
 
 import { randomNum, randomCondition } from '../../helpers'
 
-const soundDir = '/audio/music/'
-const bgMusicPaths = [
-    'Galactic-Renaissance.mp3',
-    'Jungle-Loop.mp3'
+// image imports
+import base from '../../images/planets/earth.png'
+import mapBg from '../../images/background.jpg'
+// planet images
+import mars from '../../images/planets/mars.png'
+import jupiter from'../../images/planets/jupiter.png'
+import rings from '../../images/planets/rings.png'
+import moon from '../../images/planets/moon.png'
+import blue from '../../images/planets/blue.png'
+
+// Audio Imports
+import galactic from '../../audio/music/Galactic-Renaissance.mp3'
+import jungle from '../../audio/music/Galactic-Renaissance.mp3'
+import click from '../../audio/sfx/ui/click.ogg'
+
+const bgMusic = [
+    galactic,
+    jungle
 ]
 
-const bgMusic = bgMusicPaths.map(p => `${soundDir}${p}`)
+const clickSounds = [
+    click
+]
 
 const planetImgs = [
-    '/images/planets/mars.png',
-    '/images/planets/jupiter.png',
-    '/images/planets/rings.png',
-    '/images/planets/moon.png',
-    '/images/planets/blue.png'
+    mars,
+    jupiter,
+    rings,
+    moon,
+    blue
 ]
-
-const base = '/images/planets/earth.png'
-const mapBg = '/images/background.jpg'
 
 const MapContainer = styled.div`
     background-image: url(${mapBg});
@@ -76,6 +89,11 @@ const Map = () => {
         src: [bgMusic[randomNum(bgMusic.length - 1)]],
         loop: true,
         volume: 0.75
+    }), [])
+
+    const uiSounds = useMemo(() => new Howl({
+        src: [clickSounds[randomNum(clickSounds.length - 1)]],
+        volume: 1.5
     }), [])
 
     // adds a random number of stars
@@ -162,6 +180,7 @@ const Map = () => {
                 planetSelected={selectedPlanet}
                 addStars={addStars}
                 destroyStar={destroyStar}
+                clickSounds={uiSounds}
             />
         </MapContainer>
     )
