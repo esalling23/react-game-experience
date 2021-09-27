@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import styled from 'styled-components'
+import { Howl } from 'howler'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import Planet from './Planet'
@@ -8,7 +9,15 @@ import ButtonsPanel from '../MenuPanel/Panel'
 
 import { randomNum, randomCondition } from '../../helpers'
 
-const planets = [
+const soundDir = '/audio/music/'
+const bgMusicPaths = [
+    'Galactic-Renaissance.mp3',
+    'Jungle-Loop.mp3'
+]
+
+const bgMusic = bgMusicPaths.map(p => `${soundDir}${p}`)
+
+const planetImgs = [
     '/images/planets/mars.png',
     '/images/planets/jupiter.png',
     '/images/planets/rings.png',
@@ -63,6 +72,12 @@ const Map = () => {
     const skyRef = useRef(null)
     const clearSelected = () => setSelectedPlanet('base')
 
+    const mapMusic = useMemo(() => new Howl({
+        src: [bgMusic[randomNum(bgMusic.length - 1)]],
+        loop: true,
+        volume: 0.75
+    }), [])
+
     // adds a random number of stars
     const addStars = () => setStars(currStars => {
         const count = randomNum(STAR_COUNT) + STAR_BASE_COUNT
@@ -101,10 +116,9 @@ const Map = () => {
     }
 
     useEffect(() => {
-        if (selectedPlanet === 'base') {
-            clearSelected()
-        }
-    }, [selectedPlanet])
+        mapMusic.play()
+        mapMusic.fade(0, 1, 200)
+    }, [mapMusic])
 
     return (
         <MapContainer>
@@ -122,12 +136,12 @@ const Map = () => {
 
             <PlanetsContainer>
                 <AnimateSharedLayout>
-                    {planets.map((img, i) => {
+                    {planetImgs.map((img, i) => {
                         const name = `planet-${i}`
                         return (
                             <Planet
                                 key={i}
-                                img={planets[i]}
+                                img={planetImgs[i]}
                                 handleClick={handleClick}
                                 name={name}
                                 isSelected={selectedPlanet === name}
