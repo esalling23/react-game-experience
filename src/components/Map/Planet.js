@@ -21,8 +21,12 @@ const PlanetContainer = styled(motion.div)`
 `
 
 const PlanetImg = styled(motion.img)`
-    min-height: 8em;
+    min-height: 5em;
     z-index: 0;
+
+    @media (min-height: 768px) {
+        min-height: 8em;
+    }
 `
 
 const Planet = ({
@@ -69,7 +73,7 @@ const Planet = ({
             }
         },
         zoom: {
-            scale: 1.2,
+            scale: 1.5,
             transition: {
                 duration: 0.6,
                 ease: "backInOut"
