@@ -61,6 +61,15 @@ const Star = ({ top, left, destroy, destroyTime, size }) => {
         }
     }, [isCaught, controls, destroy, isShooting])
 
+    // Sets up timer to destroy star after animation time
+    useEffect(() => {
+        destroyTimeout.current = setTimeout(() => {
+            destroy()
+        }, destroyTime * 1000)
+
+        return () => clearTimeout(destroyTimeout.current)
+    }, [destroyTime, destroy])
+
     return (
         <FlyingStar
             ref={starRef}

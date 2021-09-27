@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
@@ -50,17 +50,19 @@ const StarContainer = styled(motion.div)`
     width: 100vw;
 `
 
+const STAR_SPEED = 6
+
 // Should display a grid of earth & 5 other planets
 // Should have a menu at the bottom that pops up when you select a planet
 const Map = () => {
     const [stars, setStars] = useState([])
     const [selectedPlanet, setSelectedPlanet] = useState('base')
-
+    const skyRef = useRef(null)
     const clearSelected = () => setSelectedPlanet('base')
 
     const addStar = () => setStars(currStars => {
         const newStar = {
-            speed: randomNum(10) + 6,
+            speed: randomNum(6) + 6,
             size: randomCondition() ? 'small' : 'medium'
         }
         // just a way to decide to offset by left or top
@@ -89,7 +91,7 @@ const Map = () => {
 
     return (
         <MapContainer>
-            <StarContainer height={'100%'}>
+            <StarContainer ref={skyRef} height={'100%'}>
                 {stars.map((star, i) => (<Star
                     key={`star-${i}`}
                     top={star.top}
@@ -97,6 +99,7 @@ const Map = () => {
                     size={star.size}
                     destroyTime={star.speed}
                     destroy={() => destroyStar(star.id)}
+                    containerRef={el => skyRef}
                 />))}
             </StarContainer>
 
