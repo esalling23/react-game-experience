@@ -15,6 +15,7 @@ const SPIN_BTN_ANIM_OFFSET = -(SPIN_BTN_SIZE / 4) * (SPIN_BTN_SCALE / 10)
 
 const MotionBackground = styled(motion.div)`
     background: ${props => props.bgColor};
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
     display: flex;
     height: 25%;
     place-content: center;
