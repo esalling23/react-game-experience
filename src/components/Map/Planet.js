@@ -7,24 +7,29 @@ import { randomNum } from '../../helpers'
 const PlanetContainer = styled(motion.div)`
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 50%;
-    margin: 1rem;
     max-height: 20vw;
     place-content: center;
     position: relative;
     text-align: center;
-    width: 30vw;
+    width: 50vw;
 
     &:hover {
         cursor: pointer;
     }
+
+    @media (min-width: 640px) {
+        width: 30vw;
+    }
 `
 
 const PlanetImg = styled(motion.img)`
-    min-height: 5em;
+    height: 5em;
+    min-height: 3em;
     z-index: 0;
 
-    @media (min-height: 768px) {
+    @media (min-width: 960px) {
         min-height: 8em;
     }
 `
