@@ -41,7 +41,15 @@ const FlyingStar = styled(motion.img)`
 
 const CATCH_ANIM_TIME = 0.6
 
-const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
+const Star = ({
+    containerRef,
+    top,
+    left,
+    destroy,
+    destroyTime,
+    size,
+    catchStar
+}) => {
     const controls = useAnimation()
 
     const starRef = useRef(null)
@@ -134,7 +142,7 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
                     })
             }
         }
-    }, [isCaught, controls, destroy, isShooting, caughtSfx])
+    }, [isCaught, controls, destroy, isShooting, caughtSfx, shootSfx])
 
     // Sets up timer to destroy star after animation time
     useEffect(() => {
@@ -147,6 +155,12 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
         }
     }, [destroyTime, destroy])
 
+    const handleMouseEnter = useCallback(e => {
+        if (!isCaught) {
+            catchStar()
+            setIsCaught(true)
+        }
+    }, [isCaught, catchStar])
 
     return (
         <FlyingStar
@@ -156,7 +170,7 @@ const Star = ({ containerRef, top, left, destroy, destroyTime, size }) => {
             src={size === 'small' ? smallStar : mediumStar}
             variants={starVariants}
             animate={controls}
-            onMouseEnter={e => setIsCaught(true)}
+            onMouseEnter={handleMouseEnter}
         />
     )
 }

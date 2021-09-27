@@ -117,6 +117,7 @@ const STAR_POS_OFFSET = 40
 // Should have a menu at the bottom that pops up when you select a planet
 const Map = () => {
     const [stars, setStars] = useState([])
+    const [caughtStars, setCaughtStars] = useState(0)
     const [selectedPlanet, setSelectedPlanet] = useState('base')
     const skyRef = useRef(null)
     const clearSelected = () => setSelectedPlanet('base')
@@ -169,6 +170,10 @@ const Map = () => {
         setSelectedPlanet(e.currentTarget.dataset.name)
     }
 
+    const catchStar = () => {
+        setCaughtStars(soFar => soFar + 1)
+    }
+
     useEffect(() => {
         mapMusic.play()
         mapMusic.fade(0, 1, 200)
@@ -178,6 +183,7 @@ const Map = () => {
         <MapContainer>
             <StatusTextContainer>
                 <StatusText className='left'>{selectedPlanet === 'base' ? 'Welcome home' : `Exploring ${selectedPlanet}`}</StatusText>
+                <StatusText className='right'>{`Stars caught: ${caughtStars}`}</StatusText>
             </StatusTextContainer>
             <StarContainer ref={skyRef} height={'100%'}>
                 {stars.map((star, i) => (<Star
@@ -187,21 +193,21 @@ const Map = () => {
                     size={star.size}
                     destroyTime={star.speed}
                     destroy={() => destroyStar(star.id)}
+                    catchStar={catchStar}
                     containerRef={el => skyRef}
                 />))}
             </StarContainer>
 
             <PlanetsContainer>
                 <AnimateSharedLayout>
-                    {planetImgs.map((img, i) => {
-                        const name = `planet-${i}`
+                    {planetData.map((planet, i) => {
                         return (
                             <Planet
                                 key={i}
-                                img={planetImgs[i]}
+                                img={planet.img}
                                 handleClick={handleClick}
-                                name={name}
-                                isSelected={selectedPlanet === name}
+                                name={planet.name}
+                                isSelected={selectedPlanet === planet.name}
                             />
                         )
                     })}
