@@ -89,7 +89,7 @@ const sidebar = {
 const ButtonsPanel = ({
     clearSelected,
     planetSelected,
-    addStar
+    addStars
 }) => {
     const [selectedBtn, setSelectedBtn] = useState(colors[0])
     const [isOpen, setIsOpen] = useState(false)
@@ -139,7 +139,7 @@ const ButtonsPanel = ({
                             color={c}
                             isSelected={selectedBtn === c}
                             onClick={() => setSelectedBtn(c)}
-                            onComplete={addStar}
+                            onComplete={addStars}
                         />
                     ))}
                 </AnimateSharedLayout>
