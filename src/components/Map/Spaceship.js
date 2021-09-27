@@ -21,11 +21,15 @@ const flyingSounds = [
 ]
 
 const BouncingShip = styled(motion.img)`
-    height: 2.5em;
+    height: 1.5em;
     position: absolute;
     top: 0;
     width: auto;
     z-index: 1;
+
+    @media (min-height: 450px) {
+        height: 2.5em
+    }
 
     @media (min-width: 640px) {
         top: 2em;

@@ -25,9 +25,16 @@ const PlanetContainer = styled(motion.div)`
 `
 
 const PlanetImg = styled(motion.img)`
-    height: 5em;
-    min-height: 3em;
+    height: 2em;
     z-index: 0;
+
+    @media (min-height: 320px) {
+        height: 3em;
+    }
+
+    @media (min-height: 450px) {
+        height: 5em;
+    }
 
     @media (min-width: 960px) {
         min-height: 8em;

@@ -7,7 +7,7 @@ import BGColorButton from './BGColorButton'
 // image import
 import whiteCloseBtn from '../../images/white-close-btn.png'
 
-const SPIN_BTN_SIZE = 2
+const SPIN_BTN_SIZE = 1
 const SPIN_BTN_SCALE = 1.1
 // 1/10 of the scale to get increase (ex: 1.1 => 0.1)
 // 1/4 of the size to get radius
@@ -43,14 +43,17 @@ const SpinCloseButton = styled(motion.button)`
     border: 0;
     color: #fff;
     display: inline-block;
-    font-family: Arial, sans-serif;
-    font-weight: 300;
     height: ${SPIN_BTN_SIZE}rem;
     left: 0;
     margin: 1rem;
     position: absolute;
     top: 0;
     width: ${SPIN_BTN_SIZE}rem;
+
+    @media (min-width: 640px) {
+        height: ${SPIN_BTN_SIZE + 1}rem;
+        width: ${SPIN_BTN_SIZE + 1}rem;
+    }
 
     &:hover {
         cursor: pointer;
