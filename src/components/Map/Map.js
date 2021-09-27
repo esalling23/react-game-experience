@@ -60,6 +60,7 @@ const PlanetsContainer = styled.div`
     flex-wrap: wrap;
     height: 100%;
     justify-content: center;
+    margin-top: -3em;
     padding: 3em 0;
     width: 100%;
 `
@@ -70,6 +71,22 @@ const StarContainer = styled(motion.div)`
     height: 100vh;
     position: absolute;
     width: 100vw;
+`
+
+const StatusText = styled(motion.h3)`
+    background: #7D0D8D;
+    border: 2px solid white;
+    border-left: 0px;
+    border-radius: 0 30px 30px 0;
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: 1em;
+    max-width: 200px;
+    padding: 1em 2em;
+
+    @media (min-width: 640px) {
+        font-size: 1.25em;
+    }
 `
 
 const STAR_SPEED = 6
@@ -140,6 +157,7 @@ const Map = () => {
 
     return (
         <MapContainer>
+            <StatusText>{selectedPlanet === 'base' ? 'Welcome home' : `Exploring ${selectedPlanet}`}</StatusText>
             <StarContainer ref={skyRef} height={'100%'}>
                 {stars.map((star, i) => (<Star
                     key={`star-${i}`}
